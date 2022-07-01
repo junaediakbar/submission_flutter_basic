@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/task.dart';
 
+// ignore: must_be_immutable
 class DetailTask extends StatelessWidget {
   Task task;
   DetailTask(this.task, {Key? key}) : super(key: key);
@@ -59,7 +60,7 @@ class DetailTask extends StatelessWidget {
                         fontSize: 16,
                         fontWeight: FontWeight.w100),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 12,
                   ),
                   Container(
@@ -88,7 +89,7 @@ class DetailTask extends StatelessWidget {
                 child: Text(
                   task.description,
                   textScaleFactor: 1.2,
-                  style: TextStyle(color: Colors.black45),
+                  style: const TextStyle(color: Colors.black45),
                 ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),

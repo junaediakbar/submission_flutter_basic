@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import '../models/task.dart';
 import '../pages/detail_task.dart';
 
+// ignore: must_be_immutable
 class TaskItem extends StatelessWidget {
-  Task task;
+  final Task task;
   Function removeTask;
-  TaskItem({Key? key, required this.task, required this.removeTask})
+   TaskItem({Key? key, required this.task, required this.removeTask})
       : super(key: key);
 
   showAlertDialog(BuildContext context) {

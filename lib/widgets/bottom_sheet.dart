@@ -11,7 +11,6 @@ class MyFloatingButton extends StatefulWidget {
 
 class _MyFloatingButtonState extends State<MyFloatingButton> {
   TextEditingController dateinput = TextEditingController();
-  bool _show = true;
   int? _radioValue = 0;
   String _name = "";
   String _desc = "";
@@ -31,7 +30,7 @@ class _MyFloatingButtonState extends State<MyFloatingButton> {
       }
       _radioValue = value;
     });
-    print("first" + value.toString() + "radiovalue" + _radioValue.toString());
+
   }
 
   @override
@@ -39,7 +38,7 @@ class _MyFloatingButtonState extends State<MyFloatingButton> {
     return Container(
       color: Colors.white,
       child: Padding(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisSize: MainAxisSize.min,
@@ -79,16 +78,14 @@ class _MyFloatingButtonState extends State<MyFloatingButton> {
                     lastDate: DateTime(2101));
 
                 if (pickedDate != null) {
-                  print(pickedDate);
+                 
                   String formattedDate =
                       DateFormat('dd-MM-yyyy').format(pickedDate);
-                  print(formattedDate);
+              
 
                   setState(() {
                     dateinput.text = formattedDate;
                   });
-                } else {
-                  print("Date is not selected");
                 }
               },
             ),
@@ -111,18 +108,18 @@ class _MyFloatingButtonState extends State<MyFloatingButton> {
                   groupValue: _radioValue,
                   onChanged: _handleRadioValueChange,
                 ),
-                Text(
+                const Text(
                   'Urgent',
-                  style: new TextStyle(fontSize: 12.0),
+                  style: TextStyle(fontSize: 12.0),
                 ),
                 Radio(
                   value: 1,
                   groupValue: _radioValue,
                   onChanged: _handleRadioValueChange,
                 ),
-                Text(
+                const Text(
                   'Important',
-                  style: new TextStyle(
+                  style: TextStyle(
                     fontSize: 12.0,
                   ),
                 ),
@@ -131,9 +128,9 @@ class _MyFloatingButtonState extends State<MyFloatingButton> {
                   groupValue: _radioValue,
                   onChanged: _handleRadioValueChange,
                 ),
-                Text(
+                const Text(
                   'Unimportant',
-                  style: new TextStyle(fontSize: 12.0),
+                  style: TextStyle(fontSize: 12.0),
                 ),
               ],
             ),

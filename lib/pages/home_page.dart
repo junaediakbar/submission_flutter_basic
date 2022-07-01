@@ -29,8 +29,7 @@ class _HomePageState extends State<HomePage> {
   void _addNewTask(String _name, String _date, String _priority, String _desc) {
     setState(() {
       int id = listTasks.length + 1;
-      listTasks
-          .add(Task(id.toString(), '$_name', '$_date', '$_priority', '$_desc'));
+      listTasks.add(Task(id.toString(), _name, _date, _priority, _desc));
     });
   }
 
@@ -43,14 +42,14 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
-    Orientation orientation = MediaQuery.of(context).orientation;
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
             Container(
               width: screenSize.width,
-              margin: EdgeInsets.only(bottom: 12),
+              margin: const EdgeInsets.only(bottom: 12),
               child: Center(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -87,15 +86,16 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.blue,
-                boxShadow: [new BoxShadow(blurRadius: 3.0)],
+                // ignore: prefer_const_literals_to_create_immutables
+                boxShadow: [BoxShadow(blurRadius: 3.0)],
                 borderRadius:
-                    const BorderRadius.vertical(bottom: Radius.circular(18.0)),
+                    BorderRadius.vertical(bottom: Radius.circular(18.0)),
               ),
             ),
             ListView.builder(
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               scrollDirection: Axis.vertical,
               itemCount: listTasks.length,
@@ -106,7 +106,7 @@ class _HomePageState extends State<HomePage> {
                 );
               },
             ),
-            SizedBox(
+            const SizedBox(
               height: 24,
             ),
           ],

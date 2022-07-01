@@ -1,5 +1,5 @@
-import 'package:dicoding_flutter_fundamental/models/task.dart';
 import 'package:flutter/material.dart';
+import '../models/task.dart';
 
 class DetailTask extends StatelessWidget {
   Task task;

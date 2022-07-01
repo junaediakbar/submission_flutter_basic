@@ -1,6 +1,6 @@
-import 'package:dicoding_flutter_fundamental/models/task.dart';
-import 'package:dicoding_flutter_fundamental/widgets/bottom_sheet.dart';
-import 'package:dicoding_flutter_fundamental/widgets/task_item.dart';
+import '../models/task.dart';
+import '../widgets/bottom_sheet.dart';
+import '../widgets/task_item.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {

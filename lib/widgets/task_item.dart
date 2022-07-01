@@ -1,6 +1,6 @@
-import 'package:dicoding_flutter_fundamental/models/task.dart';
-import 'package:dicoding_flutter_fundamental/pages/detail_task.dart';
 import 'package:flutter/material.dart';
+import '../models/task.dart';
+import '../pages/detail_task.dart';
 
 class TaskItem extends StatelessWidget {
   Task task;

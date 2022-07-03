@@ -16,6 +16,16 @@ class DetailTask extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
+    double subtitleSize = 14;
+    double descriptionSize = 12;
+    if (screenSize.width > 350) {
+      descriptionSize = 12;
+      subtitleSize = 14;
+    } else {
+      descriptionSize = 10;
+      subtitleSize = 12;
+    }
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -55,9 +65,9 @@ class DetailTask extends StatelessWidget {
                   Text(
                     'due to ${task.date}',
                     textAlign: TextAlign.left,
-                    style: const TextStyle(
+                    style: TextStyle(
                         color: Colors.blue,
-                        fontSize: 16,
+                        fontSize: subtitleSize,
                         fontWeight: FontWeight.w100),
                   ),
                   const SizedBox(
@@ -67,7 +77,8 @@ class DetailTask extends StatelessWidget {
                     padding: const EdgeInsets.all(4),
                     child: Text(
                       task.priority,
-                      style: TextStyle(color: getColor(task)),
+                      style: TextStyle(
+                          color: getColor(task), fontSize: subtitleSize - 2),
                     ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
@@ -89,7 +100,8 @@ class DetailTask extends StatelessWidget {
                 child: Text(
                   task.description,
                   textScaleFactor: 1.2,
-                  style: const TextStyle(color: Colors.black45),
+                  style: TextStyle(
+                      color: Colors.black45, fontSize: descriptionSize),
                 ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),

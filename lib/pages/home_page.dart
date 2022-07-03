@@ -18,12 +18,12 @@ class _HomePageState extends State<HomePage> {
   }
 
   List<Task> listTasks = [
-    Task('1', ' Belajar Flutter Basic', '24-12-2022', 'urgent',
+    Task('1', 'Belajar Flutter Basic', '24-12-2022', 'urgent',
         '- Dart \n- Installation \n- Widget '),
     Task('2', 'Belajar Membuat Widgets', '30-12-2022', 'important',
         '- Statefull dan Stateless \n- Navigation '),
     Task('3', 'Nonton Series', '28-1-2023', 'unimportant',
-        '- Mengecek null value \n- Clean up code \n- Membaca review dengan baik'),
+        '- Startup \n- Bussiness Proposal'),
   ];
 
   void _addNewTask(String _name, String _date, String _priority, String _desc) {
@@ -42,7 +42,17 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
-
+    double titleSize = 28;
+    double subtitleSize = 14;
+    if (screenSize.width > 350) {
+      subtitleSize = 14;
+      titleSize = 28;
+    } else if (screenSize.width > 275 && screenSize.width < 350) {
+      titleSize = 16;
+      subtitleSize = 12;
+    } else {
+      titleSize = 12;
+    }
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -56,26 +66,26 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const <Widget>[
-                        SizedBox(height: 36),
+                      children: <Widget>[
+                        const SizedBox(height: 36),
                         Text(
                           'Hi, New User',
                           style: TextStyle(
-                            fontSize: 28,
+                            fontSize: titleSize,
                             color: Colors.white,
                             fontWeight: FontWeight.w900,
                           ),
                         ),
-                        SizedBox(height: 4),
+                        const SizedBox(height: 4),
                         Text(
                           'Let\'s do your tasks!',
                           style: TextStyle(
-                            fontSize: 14,
+                            fontSize: subtitleSize,
                             color: Colors.white,
                             fontWeight: FontWeight.normal,
                           ),
                         ),
-                        SizedBox(height: 24),
+                        const SizedBox(height: 24),
                       ],
                     ),
                     const CircleAvatar(

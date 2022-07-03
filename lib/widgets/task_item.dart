@@ -6,7 +6,7 @@ import '../pages/detail_task.dart';
 class TaskItem extends StatelessWidget {
   final Task task;
   Function removeTask;
-   TaskItem({Key? key, required this.task, required this.removeTask})
+  TaskItem({Key? key, required this.task, required this.removeTask})
       : super(key: key);
 
   showAlertDialog(BuildContext context) {
@@ -43,12 +43,27 @@ class TaskItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
+    double titleSize = 16;
+    double subtitleSize = 14;
+    if (screenSize.width > 350) {
+      subtitleSize = 14;
+      titleSize = 16;
+    } else {
+      titleSize = 12;
+      subtitleSize = 8;
+    }
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListTile(
-          title: Text(task.name),
+          title: Text(
+            task.name,
+            style: TextStyle(
+              fontSize: titleSize,
+            ),
+          ),
           trailing: IconButton(
             icon: const Icon(
               Icons.delete,
@@ -59,7 +74,12 @@ class TaskItem extends StatelessWidget {
               showAlertDialog(context);
             },
           ),
-          subtitle: Text(task.date),
+          subtitle: Text(
+            task.date,
+            style: TextStyle(
+              fontSize: subtitleSize,
+            ),
+          ),
           onTap: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
               return DetailTask(task);

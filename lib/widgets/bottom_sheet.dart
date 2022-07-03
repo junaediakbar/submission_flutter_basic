@@ -30,11 +30,29 @@ class _MyFloatingButtonState extends State<MyFloatingButton> {
       }
       _radioValue = value;
     });
-
   }
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
+    double radioScale = 1;
+    double textInputSize;
+    double titleSize = 16;
+    double radioTextSize = 12;
+    if (screenSize.width > 350) {
+      textInputSize = 16;
+      radioTextSize = 12;
+      radioScale = 1;
+    } else if (screenSize.width > 275 && screenSize.width < 350) {
+      textInputSize = 12;
+      titleSize = 12;
+      radioScale = 0.6;
+      radioTextSize = 8;
+    } else {
+      textInputSize = 12;
+      radioScale = 0.5;
+      radioTextSize = 8;
+    }
     return Container(
       color: Colors.white,
       child: Padding(
@@ -43,17 +61,17 @@ class _MyFloatingButtonState extends State<MyFloatingButton> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            const Text(
+            Text(
               'Add new task',
               style: TextStyle(
-                fontSize: 16,
+                fontSize: titleSize,
                 color: Colors.blue,
                 fontWeight: FontWeight.w900,
               ),
             ),
             const SizedBox(height: 12),
             TextField(
-              // autofocus: true,
+              style: TextStyle(fontSize: textInputSize),
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: 'Name',
@@ -64,6 +82,7 @@ class _MyFloatingButtonState extends State<MyFloatingButton> {
             ),
             const SizedBox(height: 12),
             TextField(
+              style: TextStyle(fontSize: textInputSize),
               controller: dateinput,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
@@ -78,10 +97,8 @@ class _MyFloatingButtonState extends State<MyFloatingButton> {
                     lastDate: DateTime(2101));
 
                 if (pickedDate != null) {
-                 
                   String formattedDate =
                       DateFormat('dd-MM-yyyy').format(pickedDate);
-              
 
                   setState(() {
                     dateinput.text = formattedDate;
@@ -91,6 +108,7 @@ class _MyFloatingButtonState extends State<MyFloatingButton> {
             ),
             const SizedBox(height: 12),
             TextField(
+              style: TextStyle(fontSize: textInputSize),
               maxLines: 3,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
@@ -101,36 +119,60 @@ class _MyFloatingButtonState extends State<MyFloatingButton> {
               },
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Radio(
-                  value: 0,
-                  groupValue: _radioValue,
-                  onChanged: _handleRadioValueChange,
+                Row(
+                  children: <Widget>[
+                    Transform.scale(
+                      scale: radioScale,
+                      child: Radio(
+                        value: 0,
+                        groupValue: _radioValue,
+                        onChanged: _handleRadioValueChange,
+                      ),
+                    ),
+                    Text(
+                      'Urgent',
+                      style: TextStyle(
+                        fontSize: radioTextSize,
+                      ),
+                    ),
+                  ],
                 ),
-                const Text(
-                  'Urgent',
-                  style: TextStyle(fontSize: 12.0),
+                Row(
+                  children: <Widget>[
+                    Transform.scale(
+                      scale: radioScale,
+                      child: Radio(
+                        value: 1,
+                        groupValue: _radioValue,
+                        onChanged: _handleRadioValueChange,
+                      ),
+                    ),
+                    Text(
+                      'Important',
+                      style: TextStyle(
+                        fontSize: radioTextSize,
+                      ),
+                    ),
+                  ],
                 ),
-                Radio(
-                  value: 1,
-                  groupValue: _radioValue,
-                  onChanged: _handleRadioValueChange,
-                ),
-                const Text(
-                  'Important',
-                  style: TextStyle(
-                    fontSize: 12.0,
-                  ),
-                ),
-                Radio(
-                  value: 2,
-                  groupValue: _radioValue,
-                  onChanged: _handleRadioValueChange,
-                ),
-                const Text(
-                  'Unimportant',
-                  style: TextStyle(fontSize: 12.0),
+                Row(
+                  children: <Widget>[
+                    Transform.scale(
+                      scale: radioScale,
+                      child: Radio(
+                        value: 2,
+                        groupValue: _radioValue,
+                        onChanged: _handleRadioValueChange,
+                      ),
+                    ),
+                    Text(
+                      'Unimportant',
+                      style: TextStyle(
+                        fontSize: radioTextSize,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
